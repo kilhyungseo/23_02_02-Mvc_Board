@@ -13,22 +13,28 @@
 	<hr>
 	<table border="1" cellpadding="0" cellspacing="0" width="600">
 	<tr>
-		<td>번호</td>
+		<td width="50">번호</td>
 		<td width="400">제목</td>
-		<td>글쓴이</td>
-		<td>등록일</td>
-		<td>조회수</td>
+		<td width="70">글쓴이</td>
+		<td width="200">등록일</td>
+		<td width="50">조회수</td>
 	</tr>
 	
 	<c:forEach items="${dtoList}" var="dto">
 	<tr>
 		<td>${dto.bid }</td>
-		<td>${dto.btitle }</td>
+		<td><a href="contentView.do?bid=${dto.bid }">${dto.btitle }</a></td>
 		<td>${dto.bname }</td>
 		<td>${dto.bdate }</td>
 		<td>${dto.bhit }</td>
 	</tr>
 	</c:forEach>
+	
+	<tr>
+		<td colspan="5" align="right">
+			<input type="button" value="글쓰기" onclick="javascript:window.location='writeForm.do'">
+		</td>
+	</tr>
 	
 	</table>
 </body>

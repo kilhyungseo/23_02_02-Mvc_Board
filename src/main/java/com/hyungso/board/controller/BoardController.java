@@ -10,7 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.hyungso.board.command.BCommand;
+import com.hyungso.board.command.BContentViewCommand;
+import com.hyungso.board.command.BDeleteCommand;
 import com.hyungso.board.command.BListCommand;
+import com.hyungso.board.command.BModifyOkCommand;
 import com.hyungso.board.command.BWriteCommand;
 
 /**
@@ -53,7 +56,7 @@ public class BoardController extends HttpServlet {
 		
 		System.out.println(command);
 		
-		BCommand bCommand;
+		BCommand bCommand=null;
 		String viewPage = "/error.jsp"; // view의 이름
 		
 		if(command.equals("/writeForm.do")) {
@@ -68,6 +71,26 @@ public class BoardController extends HttpServlet {
 			bCommand.execute(request, response);
 			
 			viewPage = "/board_list.jsp";
+		}else if(command.equals("/contentView.do")) {
+			bCommand = new BContentViewCommand();
+			bCommand.execute(request, response);
+			
+			viewPage = "/content_view.jsp";
+		}else if(command.equals("/contentModify.do")) {
+			bCommand = new BContentViewCommand();
+			bCommand.execute(request, response);
+			
+			viewPage = "/content_Modify.jsp";
+		}else if(command.equals("/modify.do")) {
+			bCommand = new BModifyOkCommand();
+			bCommand.execute(request, response);
+			
+			viewPage = "/list.do";
+		}else if(command.equals("/delete.do")) {
+			bCommand = new BDeleteCommand();
+			bCommand.execute(request, response);
+			
+			viewPage = "/list.do";
 		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
